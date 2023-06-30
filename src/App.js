@@ -1,9 +1,19 @@
-import React from 'react'
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import PokemonDetails from 'components/PokemonDetails';
+import Header from './components/Header';
+import PokemonStart from './components/PokemonStart';
 
 export const App = () => {
   return (
-    <div>
-      Find me in src/app.js!
-    </div>
-  )
-}
+    <BrowserRouter>
+      <Header />
+      <PokemonStart />
+      <Routes>
+        <Route path="/" element={<PokemonStart />} />
+        <Route path="/pokemon/:name" element={<PokemonDetails />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
+
