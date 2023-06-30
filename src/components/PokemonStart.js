@@ -127,11 +127,6 @@ const PokemonStart = () => {
             ))}
           </PokemonList>
         )}
-        {!loading && offset > 0 && filteredPokemon.length > 0 && (
-          <button type="button" onClick={handleLoadMore}>
-            Load More
-          </button>
-        )}
       </Container>
     </PokemonContainer>
   );

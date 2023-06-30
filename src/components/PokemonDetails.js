@@ -61,6 +61,7 @@ const StrengthsContainer = styled.div`
   padding: 16px;
   border-radius: 8px;
   margin-top: 16px;
+  width: 300px;
 `;
 
 const Strengths = styled.div`
@@ -83,6 +84,7 @@ const AbilitiesContainer = styled.div`
   padding: 16px;
   border-radius: 8px;
   margin-top: 16px;
+  width: 300px;
 `;
 
 const Abilities = styled.div`
@@ -99,6 +101,51 @@ const Ability = styled.span`
   font-size: 14px;
   color: white;
 `;
+const MovesContainer = styled.div`
+  background-color: white;
+  padding: 16px;
+  border-radius: 8px;
+  margin-top: 16px;
+  width: 300px;
+`;
+
+const Moves = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+const Move = styled.span`
+  background-color: blue;
+  padding: 8px;
+  border-radius: 8px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: white;
+`;
+/*
+const HabitatContainer = styled.div`
+  background-color: white;
+  padding: 16px;
+  border-radius: 8px;
+  margin-top: 16px;
+  width: 300px;
+`;
+
+const Habitats = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+const Habitat = styled.span`
+  background-color: green;
+  padding: 8px;
+  border-radius: 8px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: white;
+`; */
 
 const PokemonDetails = () => {
   const { name } = useParams();
@@ -156,6 +203,13 @@ const PokemonDetails = () => {
             ))}
           </Abilities>
         </AbilitiesContainer>
+        <MovesContainer>
+          <Title>Moves:</Title>
+          <Moves>
+            {pokemon.moves.map((move) => (
+              <Move key={move.move.name}>{move.move.name}</Move>))}
+          </Moves>
+        </MovesContainer>
         <BackButton onClick={goBack}>Back</BackButton>
       </Container>
     </DetailsContainer>
