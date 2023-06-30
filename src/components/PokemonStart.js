@@ -7,9 +7,9 @@ const PokemonContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 70vh;
   background-color: #ccffe2;
   padding: 8px;
+  
 `;
 
 const Container = styled.div`
@@ -19,7 +19,6 @@ const Container = styled.div`
   min-height: 70vh;
   background-color: #ccffe2;
   padding: 8px;
-  width: 500px;
 `;
 
 const Title = styled.h3`
@@ -33,7 +32,7 @@ const Item = styled.div`
   padding: 10px;
   background-color: white;
   border-radius: 20px;
-  width: 400px;
+  width: 300px;
   margin: 10px;
 `;
 
@@ -49,7 +48,9 @@ const PokemonListItem = styled.li`
 
 const SearchInput = styled.input`
   height: 40px;
-  width: 400px;
+  display: flex;
+  align-items: center;
+  width: 320px;
   border-color: gray;
   border-width: 1px;
   border-radius: 10px;
