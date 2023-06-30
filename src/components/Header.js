@@ -4,6 +4,7 @@ import styled from 'styled-components';
 const HeaderContainer = styled.header`
   background-color: #ff69b4;
   padding: 16px;
+  width: 100%;
 `;
 
 const Title = styled.h1`

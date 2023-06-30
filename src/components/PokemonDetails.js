@@ -2,8 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
+const DetailsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 const Container = styled.div`
   display: flex;
+  width: 400px;
   flex-direction: column;
   align-items: center;
   background-color: lightblue;
@@ -17,7 +24,7 @@ const Title = styled.h1`
 `;
 
 const Image = styled.img`
-  width: 500px;
+  width: 400px;
   height: auto;
   aspect-ratio: 1;
   object-fit: contain;
@@ -33,10 +40,12 @@ const TypeContainer = styled.div`
 `;
 
 const BackButton = styled.button`
+
   background-color: #ff69b4;
-  border-radius: 20px;
+  border-radius: 10px;
   padding: 20px;
-  margin-left: 16px;
+  margin-top: 20px;
+  margin-left: 150px;
   border: none;
   cursor: pointer;
 `;
@@ -124,30 +133,32 @@ const PokemonDetails = () => {
   }
 
   return (
-    <Container>
-      <Title>{name}</Title>
-      {renderImage()}
-      <TypeContainer>
-        <Type>Type: {pokemon.types[0].type.name}</Type>
+    <DetailsContainer>
+      <Container>
+        <Title>{name}</Title>
+        {renderImage()}
+        <TypeContainer>
+          <Type>Type: {pokemon.types[0].type.name}</Type>
+        </TypeContainer>
+        <StrengthsContainer>
+          <Title>Strengths:</Title>
+          <Strengths>
+            {pokemon.types.map((type) => (
+              <Strength key={type.type.name}>{type.type.name}</Strength>
+            ))}
+          </Strengths>
+        </StrengthsContainer>
+        <AbilitiesContainer>
+          <Title>Abilities:</Title>
+          <Abilities>
+            {pokemon.abilities.map((ability) => (
+              <Ability key={ability.ability.name}>{ability.ability.name}</Ability>
+            ))}
+          </Abilities>
+        </AbilitiesContainer>
         <BackButton onClick={goBack}>Back</BackButton>
-      </TypeContainer>
-      <StrengthsContainer>
-        <Title>Strengths:</Title>
-        <Strengths>
-          {pokemon.types.map((type) => (
-            <Strength key={type.type.name}>{type.type.name}</Strength>
-          ))}
-        </Strengths>
-      </StrengthsContainer>
-      <AbilitiesContainer>
-        <Title>Abilities:</Title>
-        <Abilities>
-          {pokemon.abilities.map((ability) => (
-            <Ability key={ability.ability.name}>{ability.ability.name}</Ability>
-          ))}
-        </Abilities>
-      </AbilitiesContainer>
-    </Container>
+      </Container>
+    </DetailsContainer>
   );
 };
 
