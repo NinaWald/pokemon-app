@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-// import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -17,7 +17,7 @@ const Title = styled.h1`
 `;
 
 const Image = styled.img`
-  width: 100%;
+  width: 500px;
   height: auto;
   aspect-ratio: 1;
   object-fit: contain;
@@ -38,6 +38,7 @@ const BackButton = styled.button`
   padding: 20px;
   margin-left: 16px;
   border: none;
+  cursor: pointer;
 `;
 
 const Type = styled.span`
@@ -90,10 +91,11 @@ const Ability = styled.span`
   color: white;
 `;
 
-const PokemonDetails = ({ route, navigation }) => {
-  const { name } = route.params;
+const PokemonDetails = () => {
+  const { name } = useParams();
   const [pokemon, setPokemon] = useState(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
@@ -109,7 +111,7 @@ const PokemonDetails = ({ route, navigation }) => {
   };
 
   const goBack = () => {
-    navigation.goBack();
+    navigate(-1); // Use navigate(-1) to go back to the previous page
   };
 
   if (loading) {

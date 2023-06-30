@@ -55,6 +55,11 @@ const SearchInput = styled.input`
   border-radius: 10px;
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+`;
+
 const PokemonStart = () => {
   const [pokemon, setPokemon] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -70,6 +75,10 @@ const PokemonStart = () => {
       .finally(() => setLoading(false));
   }, [offset]);
 
+  useEffect(() => {
+    setOffset(0); // Reset offset when the search text changes
+  }, [searchText]);
+
   const handleLoadMore = () => {
     setOffset((prevOffset) => prevOffset + 20);
   };
@@ -77,15 +86,29 @@ const PokemonStart = () => {
   const listItem = ({ item }) => (
     <PokemonListItem key={item.name}>
       <Item>
-        <Link to={`/pokemon/${item.name}`}>
+        <StyledLink to={`/pokemon/${item.name}`}>
           <Title>{item.name.charAt(0).toUpperCase() + item.name.slice(1)}</Title>
           <p>{item.description}</p>
-        </Link>
+        </StyledLink>
       </Item>
     </PokemonListItem>
   );
 
   const filteredPokemon = pokemon.filter((p) => p.name.includes(searchText.toLowerCase()));
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
+      if (scrollTop + clientHeight >= scrollHeight - 20) {
+        handleLoadMore();
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [handleLoadMore]); // Include handleLoadMore as a dependency
 
   return (
     <PokemonContainer>
