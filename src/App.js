@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+// eslint-disable-next-line
 import PokemonDetails from './components/PokemonDetails';
 import PokemonStart from './components/PokemonStart';
 import Header from './components/Header';

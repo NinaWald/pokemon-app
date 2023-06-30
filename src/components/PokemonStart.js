@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
@@ -79,9 +79,9 @@ const PokemonStart = () => {
     setOffset(0); // Reset offset when the search text changes
   }, [searchText]);
 
-  const handleLoadMore = () => {
+  const handleLoadMore = useCallback(() => {
     setOffset((prevOffset) => prevOffset + 20);
-  };
+  }, []);
 
   const listItem = ({ item }) => (
     <PokemonListItem key={item.name}>

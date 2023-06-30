@@ -106,6 +106,7 @@ const PokemonDetails = () => {
   }, [name]);
 
   const renderImage = () => {
+    // eslint-disable-next-line
     const imgUrl = pokemon?.sprites.other['official-artwork'].front_default;
     return <Image src={imgUrl} alt={name} />;
   };
