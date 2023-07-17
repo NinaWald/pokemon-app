@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const HeaderContainer = styled.header`
-  background-color: #ff69b4;
+  background-color: #ffc0cb;
   padding: 16px;
   display: flex;
   justify-content: center;
