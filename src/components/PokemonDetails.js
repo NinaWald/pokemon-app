@@ -42,11 +42,12 @@ const TypeContainer = styled.div`
 const BackButton = styled.button`
 
   background-color: #ff69b4;
-  border-radius: 10px;
+  border-radius: 50px;
   padding: 20px;
   margin-top: 20px;
   margin-left: 150px;
   border: none;
+  width: 100px;
   cursor: pointer;
 `;
 
@@ -196,7 +197,7 @@ const PokemonDetails = () => {
             <Habitat>{habitat}</Habitat>
           </Habitats>
         </HabitatContainer>
-        <BackButton onClick={goBack}>Back</BackButton>
+        <BackButton onClick={goBack}>Go Back</BackButton>
       </Container>
     </DetailsContainer>
   );

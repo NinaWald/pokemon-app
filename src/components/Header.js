@@ -4,11 +4,15 @@ import styled from 'styled-components';
 const HeaderContainer = styled.header`
   background-color: #ff69b4;
   padding: 16px;
-  width: 100%;
-  justify-content: center;
   display: flex;
+  justify-content: center;
   align-items: center;
 `;
+
+const Headerbox = styled.div`
+ display: flex;
+ justify-content: center;
+`
 
 const Title = styled.h1`
   color: white;
@@ -17,7 +21,9 @@ const Title = styled.h1`
 
 const Header = () => (
   <HeaderContainer>
-    <Title>Pokemon App</Title>
+    <Headerbox>
+      <Title>Pokemon App</Title>
+    </Headerbox>
   </HeaderContainer>
 );
 
