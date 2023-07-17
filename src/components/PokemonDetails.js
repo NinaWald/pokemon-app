@@ -156,6 +156,9 @@ const PokemonDetails = () => {
   };
 
   const goBack = () => {
+    const { state } = location;
+    const scrollTop = state ? state.scrollTop : 0;
+    window.scrollTo(0, scrollTop);
     navigate(-1); // Use navigate(-1) to go back to the previous page
   };
 

@@ -5,6 +5,7 @@ const HeaderContainer = styled.header`
   background-color: #ffc0cb;
   padding: 16px;
   display: flex;
+  height: 50px;
   justify-content: center;
   align-items: center;
 `;

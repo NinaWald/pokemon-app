@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 const PokemonContainer = styled.div`
   display: flex;
@@ -63,7 +64,7 @@ const StyledLink = styled(Link)`
 
 const PokemonStart = () => {
   const [pokemon, setPokemon] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [, setLoading] = useState(true);
   const [offset, setOffset] = useState(0);
   const [searchText, setSearchText] = useState('');
 
@@ -117,9 +118,13 @@ const PokemonStart = () => {
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)} />
       <Container>
-        {loading && offset === 0 ? (
-          <div>Loading...</div>
-        ) : (
+        <InfiniteScroll
+          dataLength={filteredPokemon.length}
+          next={handleLoadMore}
+          hasMore
+          loader={<div>Loading...</div>}
+          scrollThreshold="95%"
+          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <PokemonList>
             {filteredPokemon.map((item) => (
               <PokemonListItem key={item.name}>
@@ -132,7 +137,7 @@ const PokemonStart = () => {
               </PokemonListItem>
             ))}
           </PokemonList>
-        )}
+        </InfiniteScroll>
       </Container>
     </PokemonContainer>
   );
