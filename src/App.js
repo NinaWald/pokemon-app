@@ -3,13 +3,12 @@ import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 // eslint-disable-next-line
 import PokemonDetails from './components/PokemonDetails';
 import PokemonStart from './components/PokemonStart';
-import Header from './components/Header';
+// import Header from './components/Header';
 import NotFound from './components/NotFound';
 
 export const App = () => {
   return (
     <BrowserRouter>
-      <Header />
       <Routes>
         <Route path="/" element={<PokemonStart />} />
         <Route path="/pokemon/:name/:id" element={<PokemonDetails />} />

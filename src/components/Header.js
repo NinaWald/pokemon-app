@@ -6,6 +6,7 @@ const HeaderContainer = styled.header`
   padding: 16px;
   display: flex;
   height: 50px;
+  width: 100%;
   justify-content: center;
   align-items: center;
 `;

@@ -10,7 +10,7 @@ const DetailsContainer = styled.div`
 `;
 const Container = styled.div`
   display: flex;
-  width: 400px;
+  width: auto;
   height: 500px;
   flex-direction: column;
   align-items: center;
