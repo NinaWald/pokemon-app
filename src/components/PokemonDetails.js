@@ -10,7 +10,8 @@ const DetailsContainer = styled.div`
 `;
 const Container = styled.div`
   display: flex;
-  width: 430px;
+  width: 400px;
+  height: 500px;
   flex-direction: column;
   align-items: center;
   background-color: lightblue;
@@ -24,7 +25,7 @@ const Title = styled.h1`
 `;
 
 const Image = styled.img`
-  width: 400px;
+  width: 350px;
   height: auto;
   aspect-ratio: 1;
   object-fit: contain;
@@ -62,7 +63,7 @@ const StrengthsContainer = styled.div`
   padding: 16px;
   border-radius: 8px;
   margin-top: 16px;
-  width: 300px;
+  width: 200px;
 `;
 
 const Strengths = styled.div`
@@ -85,7 +86,7 @@ const AbilitiesContainer = styled.div`
   padding: 16px;
   border-radius: 8px;
   margin-top: 16px;
-  width: 300px;
+  width: 200px;
 `;
 
 const Abilities = styled.div`
@@ -108,7 +109,7 @@ const HabitatContainer = styled.div`
   padding: 16px;
   border-radius: 8px;
   margin-top: 16px;
-  width: 300px;
+  width: 200px;
 `;
 
 const Habitats = styled.div`
@@ -156,9 +157,6 @@ const PokemonDetails = () => {
   };
 
   const goBack = () => {
-    const { state } = location;
-    const scrollTop = state ? state.scrollTop : 0;
-    window.scrollTo(0, scrollTop);
     navigate(-1); // Use navigate(-1) to go back to the previous page
   };
 
