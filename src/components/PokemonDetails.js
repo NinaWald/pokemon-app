@@ -101,29 +101,7 @@ const Ability = styled.span`
   font-size: 14px;
   color: white;
 `;
-const MovesContainer = styled.div`
-  background-color: white;
-  padding: 16px;
-  border-radius: 8px;
-  margin-top: 16px;
-  width: 300px;
-`;
 
-const Moves = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`;
-
-const Move = styled.span`
-  background-color: blue;
-  padding: 8px;
-  border-radius: 8px;
-  margin-right: 8px;
-  margin-bottom: 8px;
-  font-size: 14px;
-  color: white;
-`;
-/*
 const HabitatContainer = styled.div`
   background-color: white;
   padding: 16px;
@@ -145,26 +123,35 @@ const Habitat = styled.span`
   margin-bottom: 8px;
   font-size: 14px;
   color: white;
-`; */
+`;
 
 const PokemonDetails = () => {
-  const { name } = useParams();
+  const { id } = useParams();
   const [pokemon, setPokemon] = useState(null);
+  const [habitat, setHabitat] = useState(null);
+
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
+    fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
       .then((resp) => resp.json())
       .then((json) => setPokemon(json))
       .catch((error) => console.log(error))
       .finally(() => setLoading(false));
-  }, [name]);
+  }, [id]);
+
+  useEffect(() => {
+    fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`)
+      .then((resp) => resp.json())
+      .then((json) => setHabitat(json.habitat.name))
+      .catch((error) => console.log(error));
+  }, [id]);
 
   const renderImage = () => {
     // eslint-disable-next-line
-    const imgUrl = pokemon?.sprites.other['official-artwork'].front_default;
-    return <Image src={imgUrl} alt={name} />;
+    const imgUrl = pokemon?.sprites?.other['official-artwork']?.front_default;
+    return <Image src={imgUrl} alt="image" />;
   };
 
   const goBack = () => {
@@ -182,10 +169,10 @@ const PokemonDetails = () => {
   return (
     <DetailsContainer>
       <Container>
-        <Title>{name}</Title>
+        <Title>{pokemon.name}</Title>
         {renderImage()}
         <TypeContainer>
-          <Type>Type: {pokemon.types[0].type.name}</Type>
+          <Type>Type: {pokemon.types[0]?.type.name}</Type>
         </TypeContainer>
         <StrengthsContainer>
           <Title>Strengths:</Title>
@@ -203,13 +190,12 @@ const PokemonDetails = () => {
             ))}
           </Abilities>
         </AbilitiesContainer>
-        <MovesContainer>
-          <Title>Moves:</Title>
-          <Moves>
-            {pokemon.moves.map((move) => (
-              <Move key={move.move.name}>{move.move.name}</Move>))}
-          </Moves>
-        </MovesContainer>
+        <HabitatContainer>
+          <Title>Habitat:</Title>
+          <Habitats>
+            <Habitat>{habitat}</Habitat>
+          </Habitats>
+        </HabitatContainer>
         <BackButton onClick={goBack}>Back</BackButton>
       </Container>
     </DetailsContainer>

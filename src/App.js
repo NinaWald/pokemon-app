@@ -12,7 +12,7 @@ export const App = () => {
       <Header />
       <Routes>
         <Route path="/" element={<PokemonStart />} />
-        <Route path="/pokemon/:name" element={<PokemonDetails />} />
+        <Route path="/pokemon/:name/:id" element={<PokemonDetails />} />
         <Route path="/404" element={<NotFound />} />
         <Route path="*" element={<Navigate to="/404" />} />
       </Routes>

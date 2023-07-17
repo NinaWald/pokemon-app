@@ -74,6 +74,8 @@ const PokemonStart = () => {
       .then((json) => setPokemon((prevPokemon) => [...prevPokemon, ...json.results]))
       .catch((error) => console.log(error))
       .finally(() => setLoading(false));
+
+    setOffset((prevOffset) => prevOffset + 20);
   }, [offset]);
 
   useEffect(() => {
@@ -84,32 +86,29 @@ const PokemonStart = () => {
     setOffset((prevOffset) => prevOffset + 20);
   }, []);
 
-  const listItem = ({ item }) => (
-    <PokemonListItem key={item.name}>
-      <Item>
-        <StyledLink to={`/pokemon/${item.name}`}>
-          <Title>{item.name.charAt(0).toUpperCase() + item.name.slice(1)}</Title>
-          <p>{item.description}</p>
-        </StyledLink>
-      </Item>
-    </PokemonListItem>
-  );
-
   const filteredPokemon = pokemon.filter((p) => p.name.includes(searchText.toLowerCase()));
 
   useEffect(() => {
+    const storedScrollTop = sessionStorage.getItem('pokemonScrollTop');
+    if (storedScrollTop) {
+      console.log('Restoring Scroll Position:', storedScrollTop);
+      window.scrollTo(0, parseInt(storedScrollTop, 10));
+    }
+
     const handleScroll = () => {
       const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
       if (scrollTop + clientHeight >= scrollHeight - 20) {
         handleLoadMore();
       }
+      // Store the scroll position in session storage
+      sessionStorage.setItem('pokemonScrollTop', window.scrollY.toString());
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [handleLoadMore]); // Include handleLoadMore as a dependency
+  }, [handleLoadMore]);
 
   return (
     <PokemonContainer>
@@ -123,14 +122,19 @@ const PokemonStart = () => {
         ) : (
           <PokemonList>
             {filteredPokemon.map((item) => (
-              <PokemonListItem key={item.name}>{listItem({ item })}</PokemonListItem>
+              <PokemonListItem key={item.name}>
+                <Item>
+                  <StyledLink to={`/pokemon/${item.id}/${item.name}`}>
+                    <Title>{item.name.charAt(0).toUpperCase() + item.name.slice(1)}</Title>
+                  </StyledLink>
+
+                </Item>
+              </PokemonListItem>
             ))}
           </PokemonList>
         )}
       </Container>
     </PokemonContainer>
   );
-};
-
+}
 export default PokemonStart;
-
