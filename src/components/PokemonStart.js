@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -57,6 +57,14 @@ const SearchInput = styled.input`
   border-radius: 10px;
 `;
 
+const SearchContainer = styled.div`
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: #ccffe2;
+  padding: 8px;
+`;
+
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: inherit;
@@ -68,15 +76,18 @@ const PokemonStart = () => {
   const [offset, setOffset] = useState(0);
   const [searchText, setSearchText] = useState('');
 
+  const infiniteScrollRef = useRef(null); // Create a reference for the InfiniteScroll component
+
   useEffect(() => {
     setLoading(true);
     fetch(`https://pokeapi.co/api/v2/pokemon?limit=20&offset=${offset}`)
       .then((resp) => resp.json())
-      .then((json) => setPokemon((prevPokemon) => [...prevPokemon, ...json.results]))
-      .catch((error) => console.log(error))
-      .finally(() => setLoading(false));
-
-    setOffset((prevOffset) => prevOffset + 20);
+      .then((json) => {
+        setPokemon((prevPokemon) => [...prevPokemon, ...json.results]);
+        setOffset((prevOffset) => prevOffset + 20); // Move this inside the callback function
+        setLoading(false);
+      })
+      .catch((error) => console.log(error));
   }, [offset]);
 
   useEffect(() => {
@@ -113,10 +124,12 @@ const PokemonStart = () => {
 
   return (
     <PokemonContainer>
-      <SearchInput
-        placeholder="Search Pokemon"
-        value={searchText}
-        onChange={(e) => setSearchText(e.target.value)} />
+      <SearchContainer>
+        <SearchInput
+          placeholder="Search Pokemon"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)} />
+      </SearchContainer>
       <Container>
         <InfiniteScroll
           dataLength={filteredPokemon.length}
@@ -124,15 +137,16 @@ const PokemonStart = () => {
           hasMore
           loader={<div>Loading...</div>}
           scrollThreshold="95%"
-          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+          ref={infiniteScrollRef}>
           <PokemonList>
-            {filteredPokemon.map((item) => (
-              <PokemonListItem key={item.name}>
+            {filteredPokemon.map((item, index) => (
+              // eslint-disable-next-line react/no-array-index-key
+              <PokemonListItem key={`${item.name}-${index}`}>
                 <Item>
                   <StyledLink to={`/pokemon/${item.id}/${item.name}`}>
                     <Title>{item.name.charAt(0).toUpperCase() + item.name.slice(1)}</Title>
                   </StyledLink>
-
                 </Item>
               </PokemonListItem>
             ))}
