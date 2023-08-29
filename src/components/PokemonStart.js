@@ -9,6 +9,8 @@ const PokemonContainer = styled.div`
   align-items: center;
   background-color: #ccffe2;
   padding: 8px;
+  max-width: 500px;
+  margin: 0 auto;
   
 `;
 
@@ -19,6 +21,7 @@ const Container = styled.div`
   min-height: 70vh;
   background-color: #ccffe2;
   padding: 8px;
+
 `;
 
 const Title = styled.h3`
