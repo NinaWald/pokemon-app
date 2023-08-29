@@ -9,9 +9,9 @@ const PokemonContainer = styled.div`
   align-items: center;
   background-color: #ccffe2;
   padding: 8px;
-  max-width: 500px;
+  max-width: 400px;
   margin: 0 auto;
-  
+  text-align: center; 
 `;
 
 const Container = styled.div`

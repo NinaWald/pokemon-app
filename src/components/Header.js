@@ -6,10 +6,13 @@ const HeaderContainer = styled.header`
   padding: 16px;
   display: flex;
   height: 90px;
-  width: 100%;
+  max-width: 100%;
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  margin: 0 auto;
+  border-radius: 20px;
+  text-align: center;
 `;
 
 const Headerbox = styled.div`
