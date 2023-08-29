@@ -171,7 +171,7 @@ const PokemonDetails = () => {
   return (
     <DetailsContainer>
       <Container>
-        <Title>{pokemon.name}</Title>
+        <Title>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</Title>
         {renderImage()}
         <TypeContainer>
           <Type>Type: {pokemon.types[0]?.type.name}</Type>
@@ -205,3 +205,23 @@ const PokemonDetails = () => {
 };
 
 export default PokemonDetails;
+
+/*
+
+  How to capitalize first letter:
+  <Title>{pokemon.name}</Title>
+
+  To capitalize the first letter of the Pokémon name, you can use JavaScript's
+   string manipulation functions.
+  One common way to capitalize the first letter of a string is to use the charAt
+   and toUpperCase functions.
+
+  <Title>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</Title>
+
+  In this code, pokemon.name.charAt(0) retrieves the first character of the name,
+   .toUpperCase() capitalizes it,
+  and pokemon.name.slice(1) gets the rest of the name starting
+   from the second character.
+  This combination ensures that the first letter is capitalized
+   while the rest of the name remains as is.
+*/
