@@ -71,22 +71,42 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   color: inherit;
 `;
+const LoadMoreContainer = styled.div`
+  text-align: center;
+  padding: 20px;
+  margin-bottom: 50px;
+`
+const LoadMoreButton = styled.button`
+  background-color: pink;
+  color: black;
+  border: solid 1px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+`;
 
 const PokemonStart = () => {
   const [pokemon, setPokemon] = useState([]);
   const [, setLoading] = useState(true);
   const [offset, setOffset] = useState(0);
   const [searchText, setSearchText] = useState('');
+  const [showLoadMoreButton, setShowLoadMoreButton] = useState(false);
+
+  const handleLoadMoreClick = () => {
+    // Increment the offset to load the next set of 20 Pokémon
+    setOffset((prevOffset) => prevOffset + 20);
+  };
 
   useEffect(() => {
     setLoading(true);
     try {
-      fetch(`https://pokeapi.co/api/v2/pokemon?limit=20&offset=${offset}`)
+      fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=20`)
         .then((resp) => resp.json())
         .then((json) => {
           setPokemon((prevPokemon) => [...prevPokemon, ...json.results]);
-          setOffset((prevOffset) => prevOffset + 20);
+          // setOffset((prevOffset) => prevOffset + 20);
           setLoading(false);
+          setShowLoadMoreButton(true);
         })
         .catch((error) => {
           console.log(error);
@@ -110,7 +130,7 @@ const PokemonStart = () => {
       </SearchContainer>
       <Container>
         <PokemonList>
-          {filteredPokemon.map((item) => (
+          {filteredPokemon.map((item, index) => (
             // eslint-disable-next-line react/no-array-index-key
             <PokemonListItem key={`${item.name}-${item.id}`}>
               <Item>
@@ -118,10 +138,20 @@ const PokemonStart = () => {
                   <Title>{item.name.charAt(0).toUpperCase() + item.name.slice(1)}</Title>
                 </StyledLink>
               </Item>
+              {/* Add a line break after every 20th item */}
+              {index % 20 === 19 && <hr />}
             </PokemonListItem>
           ))}
         </PokemonList>
       </Container>
+      {/* Render the "Load More Pokemons" button */}
+      {showLoadMoreButton && (
+        <LoadMoreContainer>
+          <LoadMoreButton type="button" onClick={handleLoadMoreClick}>
+            Load More Pokemons!
+          </LoadMoreButton>
+        </LoadMoreContainer>
+      )}
     </PokemonContainer>
   );
 }
