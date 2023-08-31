@@ -1,0 +1,270 @@
+/* details.css */
+
+.DetailsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+
+  }
+  
+  .Container {
+    display: flex;
+    width: auto;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    background-color: lightblue;
+    padding: 8px;
+    margin-bottom: 50px;
+  }
+  
+  .Title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  img {
+    width: 330px;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 12px;
+    margin-top: 10px;
+  }
+  
+  .TypeContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+    margin: 20px;
+  }
+  
+
+  
+  .Type {
+    flex: 1;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .StrengthsContainer, .AbilitiesContainer, .HabitatContainer {
+    background-color: white;
+    padding: 16px;
+    border-radius: 8px;
+    margin-top: 16px;
+    width: 300px;
+  }
+  
+  .Strengths {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .Strength {
+    background-color: pink;
+    padding: 8px;
+    border-radius: 8px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: white;
+  }
+  
+ 
+  .Abilities {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .Ability {
+    background-color: purple;
+    padding: 8px;
+    border-radius: 8px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: white;
+  }
+  
+
+  
+  .Habitats {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .Habitat {
+    background-color: green;
+    padding: 8px;
+    border-radius: 8px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: white;
+  }
+  
+  .BackButtonContainer {
+    margin-bottom: 50px;
+    height: 100px;
+  }
+  .BackButton {
+    background-color: #ff69b4;
+    border-radius: 50px;
+    padding: 20px;
+    margin-top: 20px;
+    margin-left: 150px;
+    border: none;
+    width: 100px;
+    cursor: pointer;
+  }
+
+  /*
+    .HabitatContainer {
+    background-color: white;
+    padding: 16px;
+    border-radius: 8px;
+    margin-top: 16px;
+    width: 200px;
+  }
+ .AbilitiesContainer {
+    background-color: white;
+    padding: 16px;
+    border-radius: 8px;
+    margin-top: 16px;
+    width: 200px;
+  }
+
+const DetailsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 600px;
+`;
+const Container = styled.div`
+  display: flex;
+  width: auto;
+  height: 500px;
+  flex-direction: column;
+  align-items: center;
+  background-color: lightblue;
+  padding: 8px;
+  margin-bottom: 50px;
+`;
+
+const Title = styled.h1`
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+`;
+
+const Image = styled.img`
+  width: 350px;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
+  margin-bottom: 12px;
+  margin-top: 10px;
+`;
+
+const TypeContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  margin: 20px;
+`;
+
+const BackButton = styled.button`
+
+  background-color: #ff69b4;
+  border-radius: 50px;
+  padding: 20px;
+  margin-top: 20px;
+  margin-left: 150px;
+  border: none;
+  width: 100px;
+  cursor: pointer;
+`;
+
+const Type = styled.span`
+  flex: 1;
+  font-size: 18px;
+  font-weight: bold;
+`;
+
+const StrengthsContainer = styled.div`
+  background-color: white;
+  padding: 16px;
+  border-radius: 8px;
+  margin-top: 16px;
+  width: 200px;
+`;
+
+const Strengths = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+const Strength = styled.span`
+  background-color: pink;
+  padding: 8px;
+  border-radius: 8px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: white;
+`;
+
+const AbilitiesContainer = styled.div`
+  background-color: white;
+  padding: 16px;
+  border-radius: 8px;
+  margin-top: 16px;
+  width: 200px;
+`;
+
+const Abilities = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+const Ability = styled.span`
+  background-color: purple;
+  padding: 8px;
+  border-radius: 8px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: white;
+`;
+
+const HabitatContainer = styled.div`
+  background-color: white;
+  padding: 16px;
+  border-radius: 8px;
+  margin-top: 16px;
+  width: 200px;
+`;
+
+const Habitats = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+const Habitat = styled.span`
+  background-color: green;
+  padding: 8px;
+  border-radius: 8px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: white;
+`;
+
+const BackButtonContainer = styled.div`
+  margin-bottom: 50px;
+  height: 50px;
+`
+*/
